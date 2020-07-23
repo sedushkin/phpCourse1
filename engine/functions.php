@@ -104,6 +104,25 @@ return true;
             }
             return $root;
         }
-?>
+
+
+function get_images($dir){
+    @$files = scandir($dir);
+    unset($files[0], $files[1]);
+    return $files;}
+
+function gallery_render() {
+    $images = get_images(GALLERY_DIR);
+    if ($images){
+        foreach ($images as $image) {
+            $GalleryItem = GALLERY_DIR.'/'.$image;
+            echo ('<div class="gallery_item"><div class="image_small"><img class="gallery_img" src="'.$GalleryItem.'"></div></div>');
+        }
+    } else {
+            $GalleryItem = "В данной галерее нету картинок";
+        };
+}
 
 ?>
+
+

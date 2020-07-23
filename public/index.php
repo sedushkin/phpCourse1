@@ -1,4 +1,10 @@
 <?php
 require_once('../config/config.php');
-renderPage();
+
+echo (render('../templates/template_gallery.html'));
+
+gallery_render();
+
+
+
 ?>
