@@ -106,13 +106,23 @@ return true;
         }
 
 
-function get_images($dir){
+function get_files($dir){
+    $result = [];
     @$files = scandir($dir);
-    unset($files[0], $files[1]);
-    return $files;}
+    foreach ($files as $key => $value) {
+        if (!in_array($value,[".", ".."])) {
+            if (is_dir($dir . DIRECTORY_SEPARATOR . $value)) {
+                $result[$value] = dirToArray($dir . DIRECTORY_SEPARATOR . $value);
+            } else {
+                $result[] = $value;
+            }
+        }
+    }
+    return $result;
+}
 
 function gallery_render() {
-    $images = get_images(GALLERY_DIR);
+    $images = get_files(GALLERY_DIR);
     if ($images){
         foreach ($images as $image) {
             $GalleryItem = GALLERY_DIR.'/'.$image;
