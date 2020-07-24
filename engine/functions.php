@@ -126,7 +126,9 @@ function gallery_render() {
     if ($images){
         foreach ($images as $image) {
             $GalleryItem = GALLERY_DIR.'/'.$image;
-            echo ('<div class="gallery_item"><div class="image_small"><a href="'.$GalleryItem.'" target="_blank"><img class="gallery_img" src="'.$GalleryItem.'"></a></div></div>');
+            //echo ('<div class="gallery_item"><div class="image_small"><a href="'.$GalleryItem.'" target="_blank"><img class="gallery_img" src="'.$GalleryItem.'"></a></div></div>');
+        //}
+        echo ('<div class="gallery_item"><div class="image_small"><img class="gallery_img" src="'.$GalleryItem.'"></div></div>');
         }
     } else {
             $GalleryItem = "В данной галерее нету картинок";
