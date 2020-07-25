@@ -1,6 +1,6 @@
 <?php
 
-$uploaddir = '../public/img/';
+$uploaddir = UPLOAD_DIR;
 $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
 
 echo '<pre>';
