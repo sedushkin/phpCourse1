@@ -11,7 +11,7 @@
 {{GALLERYLIST}}
 
 <p>id фото - {{ID_IMAGE}}</p>
-<p>Название картинки - {{IMAGETITLE}}</p>
+<p>Название картинки - {{IMAGE_TITLE}}</p>
 <p>адрес картинки - {{RESOURSE}}</p>
 
 
