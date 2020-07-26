@@ -7,7 +7,14 @@
     <title>Галлерея - урок 4</title>
   </head>
 <body>
-  <h1>Галерея фотографий</h1>
+  <h1>{{TITLEPAGE}}</h1>
+{{GALLERYLIST}}
+
+<p>id фото - {{ID_IMAGE}}</p>
+<p>Название картинки - {{IMAGETITLE}}</p>
+<p>адрес картинки - {{RESOURSE}}</p>
+
+
     <form enctype="multipart/form-data" action="../engine/file-handler.php" method="POST">
       <input type="hidden" name="MAX_FILE_SIZE" value="15000000" />
       Отправить этот файл: <input name="userfile" type="file" />

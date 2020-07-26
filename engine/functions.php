@@ -7,7 +7,7 @@ define('ERROR_TEMPLATE_EMPTY', 2);
 /*
 * Обрабатывает указанный шаблон, подставляя нужные переменные
 */
-function render($page_name, $variables = [])
+function renderPage($page_name, $variables = [])
 {
     $file = TPL_DIR . "/" . $page_name . ".tpl";
     if (!is_file($file)) {
@@ -58,7 +58,7 @@ function pasteValues($variables, $page_name, $templateContent){
                         $itemTemplateContent = str_replace($i_key, $item_value, $itemTemplateContent);
                     }
 
-                    $result .= $itemTemplateContent;
+                    $result = $itemTemplateContent;
                 }
             }
             else
@@ -75,7 +75,16 @@ function prepareVariables($page_name){
     $vars = [];
     switch ($page_name){
         case "news":
-            $vars["newsfeed"] = getNews();
+            //$vars["newsfeed"] = getNews();
+            $content = getNews();
+            var_dump($content);
+            echo("<br>");
+            var_dump($content["news_title"]);
+
+
+            $vars["newstitle"] = $content["news_title"];
+            var_dump($vars["newstitle"]);
+            $vars["views"] = $content["views"];
             
             break;
         case "newspage":
@@ -89,8 +98,9 @@ function prepareVariables($page_name){
             $vars["title"] = "Список сотрудников";
             break;
         case "gallery":
-            $vars["title"] = "Галерея фотографий";
-            $vars{"gallerylist"} = getGallery();
+            $vars["titlepage"] = "Галерея фотографий";
+            $vars["gallerylist"] = getGallery();
+            
     }
 
     return $vars;
@@ -104,7 +114,7 @@ function getNews(){
 }
 
 function getEmployees(){
-    $sql = 'SELECT * FROM employee';
+    $sql = 'SELECT * FROM employees';
     $list = getAssocResult($sql);
 
     return $list;
@@ -126,6 +136,7 @@ function getNewsContent($id_news){
 function getGallery() {
     $sql = "SELECT * from gallery";
     $image = getAssocResult($sql);
+    return $image;
 }
 function getGalleryContent($id_image){
     $id_image = (int)$id_image;
@@ -234,7 +245,7 @@ function gallery_render() {
             $GalleryItem = "В данной галерее нету картинок";
         };
 }
-*
+*/
 
 ?>
 
