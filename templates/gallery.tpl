@@ -10,11 +10,6 @@
   <h1>{{TITLEPAGE}}</h1>
 {{GALLERYLIST}}
 
-<p>id фото - {{ID_IMAGE}}</p>
-<p>Название картинки - {{IMAGE_TITLE}}</p>
-<p>адрес картинки - {{RESOURSE}}</p>
-
-
     <form enctype="multipart/form-data" action="../engine/file-handler.php" method="POST">
       <input type="hidden" name="MAX_FILE_SIZE" value="15000000" />
       Отправить этот файл: <input name="userfile" type="file" />
@@ -28,5 +23,7 @@
 <div class="overlay" id="overlay-modal"></div>
 </div>
   <script src="../public/scripts/script.js"></script>
+
+
 </body>
 </html>

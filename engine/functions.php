@@ -45,7 +45,7 @@ function pasteValues($variables, $page_name, $templateContent){
                 $result = "";
                 foreach ($value as $value_key => $item){
                    // $itemTemplateContent = file_get_contents(TPL_DIR . "/" . $page_name ."_".$key."_item.tpl");
-                    $itemTemplateContent = file_get_contents(TPL_DIR . "/" . $page_name .".tpl");
+                    $itemTemplateContent = file_get_contents(TPL_DIR . "/" . $page_name ."_item.tpl");
 
                     foreach($item as $item_key => $item_value){
                         $i_key = '{{' . strtoupper($item_key) . '}}';
@@ -71,17 +71,8 @@ function prepareVariables($page_name){
     $vars = [];
     switch ($page_name){
         case "news":
-            //$vars["newsfeed"] = getNews();
-            $content = getNews();
-            var_dump($content);
-            echo("<br>");
-            var_dump($content["news_title"]);
-
-
-            $vars["newstitle"] = $content["news_title"];
-            var_dump($vars["newstitle"]);
-            $vars["views"] = $content["views"];
-            
+            $vars["newsfeed"] = getNews();
+                        
             break;
         case "newspage":
             $content = getNewsContent($_GET['id_news']);
