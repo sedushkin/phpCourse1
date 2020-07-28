@@ -8,13 +8,15 @@
   </head>
 <body>
   <h1>{{TITLEPAGE}}</h1>
-{{GALLERYLIST}}
 
-    <form enctype="multipart/form-data" action="../engine/file-handler.php" method="POST">
+<div class="uploadFoto">
+   <form enctype="multipart/form-data" action="../engine/file-handler.php" method="POST">
       <input type="hidden" name="MAX_FILE_SIZE" value="15000000" />
       Отправить этот файл: <input name="userfile" type="file" />
       <input type="submit" value="Отправить файл" />
     </form>
+</div>
+   {{GALLERYLIST}}
   <br>
   <div class="modal" data-modal="1">
   <span class="modal_close">Х</span>
