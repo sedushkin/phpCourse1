@@ -49,7 +49,7 @@
     <form method="GET">
         <input name="x" type="number" value="<?=$x?>">
         <select name="sign">
-            <option <? if ($sign=='plus') echo 'selected'?> value="plus">+</option>
+            <option value="plus">+</option>
             <option value="minus">-</option>
             <option value="pow">*</option>
             <option value="division">/</option>
