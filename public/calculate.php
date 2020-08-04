@@ -1,18 +1,18 @@
 <?php
-    if (isset($_GET['$x'])) {
-        $x=(int)($_GET['$x']);
+    if (isset($_GET['x'])) {
+        $x=(int)($_GET['x']);
     }
     else $x=1;
-    if (isset($_GET['$y'])) {
-        $y=(int)($_GET['$y']);
+    if (isset($_GET['y'])) {
+        $y=(int)($_GET['y']);
     }
     else $y=1;
-    if (isset($_GET['$sign'])) {
-        $sign=(int)($_GET['$sign']);
+    if (isset($_GET['sign'])) {
+        $sign=(int)($_GET['sign']);
     }
     else $sing='plus';
-    if (isset($_GET['$result'])) {
-        $result=(int)($_GET['$result']);
+    if (isset($_GET['result'])) {
+        $result=(int)($_GET['result']);
     }
     if (isset($x) && isset($y)) {
         switch ($sign) {
