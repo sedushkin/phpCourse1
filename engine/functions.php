@@ -44,8 +44,8 @@ function pasteValues($variables, $page_name, $templateContent){
                 // замена массивом
                 $result = "";
                 foreach ($value as $value_key => $item){
-                   // $itemTemplateContent = file_get_contents(TPL_DIR . "/" . $page_name ."_".$key."_item.tpl");
-                    $itemTemplateContent = file_get_contents(TPL_DIR . "/" . $page_name ."_item.tpl");
+                    $itemTemplateContent = file_get_contents(TPL_DIR . "/" . $page_name ."_".$key."_item.tpl");
+                   // $itemTemplateContent = file_get_contents(TPL_DIR . "/" . $page_name ."_item.tpl");
 
                     foreach($item as $item_key => $item_value){
                         $i_key = '{{' . strtoupper($item_key) . '}}';
@@ -87,6 +87,14 @@ function prepareVariables($page_name){
         case "gallery":
             $vars["titlepage"] = "Галерея фотографий";
             $vars["gallerylist"] = getGallery();
+            break;
+        case "feedback":
+            if(isset($_POST['name']))
+                $vars["response"] = setFeedback();
+            else
+                $vars["response"] = "";
+                $vars["feedbackfeed"] = getFeedbacksFeed();
+                break;
             
     }
 
@@ -137,7 +145,36 @@ function getGalleryContent($id_image){
     return $result;
 }
 
+function getFeedbacksFeed(){
+    $sql = "SELECT * FROM feedback";
+    $feed = getAssocResult($sql);
 
+    return $feed;
+}
+
+function setFeedback(){
+    $response = "";
+    $db_link = getConnection();
+
+    $feedback_user = mysqli_real_escape_string(
+		$db_link, 
+		(string)htmlspecialchars(strip_tags($_POST['name']))
+	);
+    $feedback_body = mysqli_real_escape_string(
+		$db_link, 
+		(string)htmlspecialchars(strip_tags($_POST['review']))
+	);
+
+    $sql = "INSERT INTO feedback (feedback_body, feedback_user) VALUES('$feedback_body', '$feedback_user')";
+	$res = executeQuery($sql, $db_link);
+
+    if(!$res)
+        $response = "Произошла ошибка!";
+    else
+        $response = "Отзыв добавлен";
+
+    return $response;
+}
 
 function _log($s, $suffix='')
 	{
@@ -233,6 +270,8 @@ function gallery_render() {
         };
 }
 */
+
+
 
 ?>
 

@@ -7,7 +7,7 @@ define('LIB_DIR', SITE_ROOT . 'engine');
 define('TPL_DIR', SITE_ROOT . 'templates');
 define('GALLERY_DIR', WWW_ROOT . '/img');
 define('UPLOAD_DIR', WWW_ROOT . '/uploads');
-define('SITE_TITLE', 'Урок 5');
+define('SITE_TITLE', 'Урок 6');
 
 /* DB config */
 define('HOST', '127.0.0.1');
