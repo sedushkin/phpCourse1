@@ -7,12 +7,16 @@
     <title>Галлерея - урок 4</title>
   </head>
 <body>
-  <h1>Галерея фотографий</h1>
-    <form enctype="multipart/form-data" action="../engine/file-handler.php" method="POST">
+  <h1>{{TITLEPAGE}}</h1>
+
+<div class="uploadFoto">
+   <form enctype="multipart/form-data" action="../engine/file-handler.php" method="POST">
       <input type="hidden" name="MAX_FILE_SIZE" value="15000000" />
       Отправить этот файл: <input name="userfile" type="file" />
       <input type="submit" value="Отправить файл" />
     </form>
+</div>
+   {{GALLERYLIST}}
   <br>
   <div class="modal" data-modal="1">
   <span class="modal_close">Х</span>
@@ -21,5 +25,7 @@
 <div class="overlay" id="overlay-modal"></div>
 </div>
   <script src="../public/scripts/script.js"></script>
+
+
 </body>
 </html>
