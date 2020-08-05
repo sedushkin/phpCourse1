@@ -95,7 +95,29 @@ function prepareVariables($page_name){
                 $vars["response"] = "";
                 $vars["feedbackfeed"] = getFeedbacksFeed();
                 break;
+        case "admin_news":
+            $vars["titlepage"]="Просмотр и редактирование новостей";
+            $vars["newsfeed"]=getNews();
+        break;
+        case "admin_news_edit":
             
+            if(isset($_POST['id_news']))
+                $vars["response"] = updateNews();
+            else
+                $vars["response"] = "Измените статью и нажмите сохранить";
+                //$vars["newsfeed"] = getNews();
+                $content = getNewsContent($_GET['id_news']);
+                $vars["id_news"] = $content["id_news"];
+                $vars["news_title"] = $content["news_title"];
+                $vars["news_content"] = $content["news_content"];
+                break;
+        case "admin_news_create":
+            if(isset($_POST['news_title']))
+                $vars["response"] = setNews();
+            else
+                $vars["response"] = "Добавьте текст и нажмите сохранить";
+                //$vars["newsfeed"] = getNews();
+                break;    
     }
 
     return $vars;
@@ -175,6 +197,70 @@ function setFeedback(){
 
     return $response;
 }
+
+function setNews(){
+    $response = "";
+    $db_link = getConnection();
+
+    
+    $news_title = mysqli_real_escape_string(
+		$db_link, 
+		(string)htmlspecialchars(strip_tags($_POST['news_title']))
+	);
+    $news_content = mysqli_real_escape_string(
+		$db_link, 
+		(string)htmlspecialchars(strip_tags($_POST['news_content']))
+	);
+
+    $sql = "INSERT INTO news (news_title, news_content) VALUES('$news_title', '$news_content')";
+	$res = executeQuery($sql, $db_link);
+
+    if(!$res)
+        $response = "Произошла ошибка!";
+    else
+        $response = "Статья добавлена";
+
+    return $response;
+}
+
+
+
+
+function updateNews(){
+    $response = "";
+    $db_link = getConnection();
+
+    $id_news=mysqli_real_escape_string(
+		$db_link, 
+		(string)htmlspecialchars(strip_tags($_POST['id_news']))
+	);
+
+    $news_title = mysqli_real_escape_string(
+		$db_link, 
+		(string)htmlspecialchars(strip_tags($_POST['news_title']))
+	);
+    $news_content = mysqli_real_escape_string(
+		$db_link, 
+		(string)htmlspecialchars(strip_tags($_POST['news_content']))
+	);
+
+    $sql = "UPDATE news SET news_title = ".$news_title.", news_content=".$news_content." WHERE id_news=".$id_news;
+	$res = executeQuery($sql, $db_link);
+
+    if(!$res)
+        $response = "Произошла ошибка!";
+    else
+        $response = "Отзыв добавлен";
+
+    return $response;
+}
+
+
+
+
+
+
+
 
 function _log($s, $suffix='')
 	{
